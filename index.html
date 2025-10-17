@@ -19,7 +19,11 @@
       --bg-gradient-end: #bfdbfe; /* Degradado de fondo */
       --card-bg: #ffffff; /* Fondo de tarjetas */
       --border-light: #e5e7eb; /* Borde ligero */
-      --shadow-light: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08); /* Sombra sutil */
+
+      /* Sombras mejoradas */
+      --shadow-default: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra estándar para elementos menores */
+      --shadow-card: 0 10px 30px rgba(59, 130, 246, 0.1), 0 4px 10px rgba(59, 130, 246, 0.06); /* Sombra más pronunciada para tarjetas, con un toque azul */
+      --shadow-button-hover: 0 8px 20px rgba(59, 130, 246, 0.4), 0 3px 6px rgba(59, 130, 246, 0.2); /* Sombra más fuerte para botones al pasar el ratón */
     }
 
     * {
@@ -28,10 +32,10 @@
       box-sizing: border-box;
     }
     body {
-      font-family: 'Open Sans', sans-serif; /* Fuente más legible para el cuerpo */
+      font-family: 'Open Sans', sans-serif;
       background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
       color: var(--text-dark);
-      line-height: 1.7; /* Mejor legibilidad */
+      line-height: 1.7;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -40,14 +44,16 @@
       background: linear-gradient(120deg, var(--primary-blue), var(--secondary-blue));
       color: white;
       text-align: center;
-      padding: 1.5rem 1rem; /* Más compacto para el encabezado */
-      box-shadow: var(--shadow-light);
+      padding: 1.5rem 1rem;
+      box-shadow: var(--shadow-default); /* Sombra estándar */
     }
     header h1 {
-      font-family: 'Poppins', sans-serif; /* Fuente moderna para títulos */
-      font-size: 2.5rem; /* Más pequeño para el masthead */
-      margin-bottom: 0.5rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 3rem; /* Tamaño un poco más grande */
       font-weight: 700;
+      letter-spacing: 2px; /* Espaciado entre letras para un look moderno */
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Sutil sombra de texto */
+      margin: 0; /* Asegurar que no haya margen extra */
     }
     .hero {
       /* Fondo con imagen y overlay para legibilidad */
@@ -56,13 +62,13 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      position: relative; /* Necesario para el pseudo-elemento */
+      position: relative;
       color: white;
       text-align: center;
-      padding: 4rem 1.5rem 2rem; /* Más espacio */
-      box-shadow: var(--shadow-light);
-      z-index: 1; /* Asegura que el contenido esté por encima del overlay */
-      overflow: hidden; /* Para que el pseudo-elemento no se desborde */
+      padding: 4rem 1.5rem 2rem;
+      box-shadow: var(--shadow-default); /* Sombra estándar */
+      z-index: 1;
+      overflow: hidden;
     }
     .hero::before { /* Capa de overlay semitransparente - OPACIDAD AJUSTADA */
       content: '';
@@ -71,8 +77,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(120deg, rgba(59, 130, 246, 0.6), rgba(37, 99, 235, 0.5)); /* Azul semitransparente (opacidad reducida) */
-      z-index: -1; /* Detrás del contenido pero encima de la imagen */
+      background: linear-gradient(120deg, rgba(59, 130, 246, 0.4), rgba(37, 99, 235, 0.3)); /* Azul semitransparente (opacidad reducida para ver más la imagen) */
+      z-index: -1;
     }
 
     .hero h2 {
@@ -80,7 +86,7 @@
       font-size: 3.2rem;
       margin-bottom: 1rem;
       font-weight: 700;
-      position: relative; /* Asegura que el texto esté sobre el overlay */
+      position: relative;
     }
     .hero p {
       font-size: 1.3rem;
@@ -92,8 +98,8 @@
     .hero-meta {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
-      gap: 1.5rem; /* Espacio entre los elementos */
+      flex-wrap: wrap;
+      gap: 1.5rem;
       margin-bottom: 2.5rem;
       font-size: 1.1rem;
       position: relative;
@@ -102,7 +108,7 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(255,255,255,0.1); /* Fondo del meta-dato más sutil */
+      background: rgba(255,255,255,0.1);
       padding: 0.5rem 1rem;
       border-radius: 8px;
       border: 1px solid rgba(255,255,255,0.2);
@@ -115,28 +121,28 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 1.5rem;
-      margin-top: 2.5rem; /* Más margen superior para separarlo de los botones */
+      margin-top: 2.5rem;
       position: relative;
     }
     .feature {
-      background: rgba(255,255,255,0.1); /* Fondo más sutil */
+      background: rgba(255,255,255,0.1);
       border: 1px solid rgba(255,255,255,0.2);
       padding: 1.5rem;
       border-radius: 12px;
       min-width: 200px;
-      width: 28%; /* Ancho relativo */
+      width: 28%;
       max-width: 280px;
       text-align: center;
-      transition: transform 0.3s ease, background 0.3s ease; /* Transición suave */
+      transition: transform 0.3s ease, background 0.3s ease;
     }
     .feature:hover {
-      transform: translateY(-5px); /* Efecto hover */
+      transform: translateY(-5px);
       background: rgba(255,255,255,0.15);
     }
     .feature i {
-      font-size: 2.8rem; /* Iconos más grandes */
+      font-size: 2.8rem;
       margin-bottom: 1rem;
-      color: var(--accent-yellow); /* Color de acento */
+      color: var(--accent-yellow);
     }
     .feature h3 {
       font-family: 'Poppins', sans-serif;
@@ -149,47 +155,47 @@
       line-height: 1.5;
     }
 
-    /* Contenedor para los nuevos botones de navegación */
     .hero-navigation {
-        margin-top: 3rem; /* Más margen para separarlo del párrafo */
+        margin-top: 3rem;
         display: flex;
-        flex-wrap: wrap; /* Permite que los botones se envuelvan */
+        flex-wrap: wrap;
         justify-content: center;
-        gap: 1rem; /* Espacio entre los botones */
+        gap: 1rem;
         position: relative;
     }
-    /* Estilo general de los botones de scroll */
     .scroll-button {
-      background: var(--accent-yellow); /* Color de acento para el botón de scroll */
+      background: var(--accent-yellow);
       padding: 0.9rem 2rem;
-      border-radius: 50px; /* Botón pill */
-      font-size: 1.05rem; /* Tamaño de fuente ligeramente ajustado */
+      border-radius: 50px;
+      font-size: 1.05rem;
       text-decoration: none;
-      color: var(--text-dark); /* Texto oscuro para contraste */
+      color: var(--text-dark);
       display: inline-flex;
       align-items: center;
       gap: 0.8rem;
       transition: background 0.3s ease, transform 0.2s ease;
       font-weight: 600;
-      white-space: nowrap; /* Evita que el texto del botón se rompa */
+      white-space: nowrap;
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); /* Sombra de botón más bonita */
     }
     .scroll-button:hover {
-      background: #eab308; /* Tono más oscuro al hover */
-      transform: translateY(-2px);
+      background: #eab308;
+      transform: translateY(-3px); /* Un poco más de efecto */
+      box-shadow: 0 6px 15px rgba(245, 158, 11, 0.4); /* Sombra más fuerte al hover */
     }
 
     main {
-      flex-grow: 1; /* Para que el footer se mantenga abajo */
-      max-width: 960px; /* Ancho máximo para el contenido */
-      margin: 3rem auto; /* Más espacio */
+      flex-grow: 1;
+      max-width: 960px;
+      margin: 3rem auto;
       padding: 0 1.5rem;
     }
     section {
       background: var(--card-bg);
-      padding: 2.5rem; /* Más padding */
+      padding: 2.5rem;
       margin-bottom: 2.5rem;
-      border-radius: 16px; /* Bordes más redondeados */
-      box-shadow: var(--shadow-light); /* Sombra mejorada */
+      border-radius: 16px;
+      box-shadow: var(--shadow-card); /* Utiliza la nueva sombra de tarjeta */
       border: 1px solid var(--border-light);
     }
     h2 {
@@ -200,7 +206,7 @@
       font-weight: 600;
       text-align: center;
     }
-    p.section-description { /* Estilo para descripciones de sección */
+    p.section-description {
       text-align: center;
       color: var(--text-medium);
       margin-bottom: 2rem;
@@ -211,7 +217,7 @@
     }
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Más ancho para los ítems */
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       margin: 2rem 0;
       text-align: center;
@@ -246,11 +252,11 @@
       font-size: 1.05rem;
       margin-bottom: 0.2rem;
     }
-    select, input[type="text"], input[type="email"], input[type="tel"], textarea { /* Añadidos tipos email y tel */
-      padding: 0.9rem; /* Más padding */
+    select, input[type="text"], input[type="email"], input[type="tel"], textarea {
+      padding: 0.9rem;
       font-size: 1rem;
       border: 1px solid var(--border-light);
-      border-radius: 10px; /* Más redondeado */
+      border-radius: 10px;
       width: 100%;
       background-color: var(--bg-light);
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -258,16 +264,16 @@
     select:focus, input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, textarea:focus {
       outline: none;
       border-color: var(--primary-blue);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Sombra al enfocar */
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
     }
     button {
       background: linear-gradient(120deg, var(--primary-blue), var(--secondary-blue));
       color: white;
-      padding: 1rem 1.5rem; /* Más padding */
+      padding: 1rem 1.5rem;
       border: none;
       border-radius: 10px;
       cursor: pointer;
-      font-size: 1.2rem; /* Más grande */
+      font-size: 1.2rem;
       font-weight: 600;
       transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
       margin-top: 1rem;
@@ -275,8 +281,8 @@
     }
     button:hover {
       opacity: 0.95;
-      transform: translateY(-2px); /* Efecto 3D sutil */
-      box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-button-hover); /* Nueva sombra al hover del botón */
     }
     
     #responsesList {
@@ -287,8 +293,8 @@
       padding: 1.5rem;
       margin-bottom: 1.2rem;
       border-radius: 12px;
-      border-left: 5px solid var(--primary-blue); /* Borde más pronunciado */
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-left: 5px solid var(--primary-blue);
+      box-shadow: var(--shadow-default); /* Sombra estándar para elementos menores */
     }
     .response h3 {
       font-family: 'Poppins', sans-serif;
@@ -331,8 +337,8 @@
       font-size: 0.95rem;
     }
     @media (max-width: 768px) {
-      header h1 { font-size: 2rem; }
-      .hero { padding: 3rem 1rem 1.5rem; } /* Ajuste de padding en móvil */
+      header h1 { font-size: 2.5rem; letter-spacing: 1px; } /* Ajuste de tamaño para móviles */
+      .hero { padding: 3rem 1rem 1.5rem; }
       .hero h2 { font-size: 2.5rem; }
       .hero p { font-size: 1.1rem; }
       .hero-meta { flex-direction: column; gap: 1rem; }
@@ -343,7 +349,7 @@
       h2 { font-size: 1.8rem; }
       button { font-size: 1.1rem; padding: 0.9rem 1.2rem; }
       .scroll-button { font-size: 0.95rem; padding: 0.7rem 1.2rem; }
-      .hero-navigation { gap: 0.8rem; margin-top: 2rem; } /* Ajusta el gap y margen para los botones en móviles */
+      .hero-navigation { gap: 0.8rem; margin-top: 2rem; }
     }
   </style>
 </head>
@@ -360,14 +366,14 @@
   <div class="hero-navigation">
     <a href="#problemFormSection" class="scroll-button"><i class="fas fa-headset"></i> Solicitar Asistencia</a>
     <a href="#taskSection" class="scroll-button"><i class="fas fa-tasks"></i> Solicitar Tarea</a>
-    <a href="#companySearchSection" class="scroll-button"><i class="fas fa-sync-alt"></i> Cambiar Compañía</a> <!-- TEXTO Y ICONO CAMBIADO -->
+    <a href="#companySearchSection" class="scroll-button"><i class="fas fa-sync-alt"></i> Cambiar Compañía</a>
     <a href="#publicProblemsSection" class="scroll-button"><i class="fas fa-eye"></i> Ver Consultas Públicas</a>
   </div>
 
   <div class="hero-meta">
     <span><i class="far fa-calendar-alt"></i> Hoy: <span id="currentDate"></span></span>
     <span><i class="far fa-clock"></i> <span id="currentTime"></span></span>
-    <span><i class="fas fa-cloud-sun"></i> Ciudad: 22°C Soleado</span> <!-- Datos estáticos por simplicidad -->
+    <span><i class="fas fa-cloud-sun"></i> Ciudad: 22°C Soleado</span> <!-- Este dato es estático. Para obtenerlo dinámicamente se requiere una API externa. -->
     <span><i class="fas fa-bullhorn"></i> Novedades: ¡Nuevos expertos en IA disponibles!</span>
   </div>
 
@@ -457,8 +463,8 @@
   </section>
 
   <section id="companySearchSection">
-    <h2>Cambia de Compañía y Ahorra</h2> <!-- TEXTO CAMBIADO -->
-    <p class="section-description">Te ayudamos a encontrar las mejores ofertas en luz, gas, telefonía, seguros y más. ¡Cambiar nunca fue tan fácil!</p> <!-- TEXTO CAMBIADO -->
+    <h2>Cambia de Compañía y Ahorra</h2>
+    <p class="section-description">Te ayudamos a encontrar las mejores ofertas en luz, gas, telefonía, seguros y más. ¡Cambiar nunca fue tan fácil!</p>
     <form id="companySearchForm">
       <label for="serviceType">Tipo de Servicio que Buscas</label>
       <select id="serviceType" required>
@@ -476,7 +482,7 @@
       <label for="companyContactDetail">Tu Correo Electrónico / Número de Teléfono</label>
       <input type="text" id="companyContactDetail" placeholder="ejemplo@dominio.com o +34 123 456 789" required />
 
-      <button type="submit">Solicitar Comparativa</button> <!-- TEXTO CAMBIADO -->
+      <button type="submit">Solicitar Comparativa</button>
     </form>
   </section>
 
@@ -516,13 +522,14 @@
   // Funciones para datos dinámicos en la portada
   function updateClock() {
     const now = new Date();
+    // toLocaleTimeString y toLocaleDateString usan la zona horaria local del navegador del usuario
     document.getElementById('currentTime').textContent = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     document.getElementById('currentDate').textContent = now.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   }
   setInterval(updateClock, 1000);
   updateClock(); // Llamada inicial para que no espere 1 segundo
 
-  // Formatear fecha para problemas
+  // Formatear fecha para consultas
   function formatDate(timestamp) {
     const date = new Date(timestamp);
     return new Intl.DateTimeFormat('es-ES', {
@@ -534,20 +541,20 @@
     }).format(date);
   }
 
-  // Enviar Asistencia Personalizada (anteriormente "Problema")
+  // Enviar Asistencia Personalizada
   document.getElementById('problemForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const problem = {
-      type: 'assistance', // Cambiado a 'assistance'
+    const assistanceRequest = {
+      type: 'assistance',
       category: document.getElementById('category').value,
       title: document.getElementById('title').value,
       description: document.getElementById('description').value,
-      isPrivate: false, // Las asistencias pueden ser públicas para ejemplo
+      isPrivate: false,
       timestamp: firebase.database.ServerValue.TIMESTAMP
     };
 
-    requestsRef.push(problem)
+    requestsRef.push(assistanceRequest)
       .then(() => {
         alert('¡Tu solicitud de asistencia ha sido enviada exitosamente! Nuestros expertos la revisarán pronto.');
         this.reset();
@@ -567,7 +574,7 @@
       description: document.getElementById('taskDescription').value,
       contactMethod: document.getElementById('contactMethod').value,
       contactDetail: document.getElementById('contactDetail').value,
-      isPrivate: true, // Las tareas son por defecto privadas
+      isPrivate: true,
       timestamp: firebase.database.ServerValue.TIMESTAMP
     };
 
@@ -582,20 +589,20 @@
       });
   });
 
-  // Enviar Búsqueda de Compañía (ahora "Cambiar Compañía")
+  // Enviar Solicitud de Cambio de Compañía
   document.getElementById('companySearchForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const companySearch = {
-      type: 'company_change', // Cambiado a 'company_change'
+    const companyChangeRequest = {
+      type: 'company_change',
       serviceType: document.getElementById('serviceType').value,
       notes: document.getElementById('companySearchNotes').value,
       contactDetail: document.getElementById('companyContactDetail').value,
-      isPrivate: true, // Las búsquedas/cambios de compañía son por defecto privadas
+      isPrivate: true,
       timestamp: firebase.database.ServerValue.TIMESTAMP
     };
 
-    requestsRef.push(companySearch)
+    requestsRef.push(companyChangeRequest)
       .then(() => {
         alert('¡Tu solicitud de cambio de compañía ha sido enviada! Te contactaremos con las mejores opciones.');
         this.reset();
@@ -606,12 +613,12 @@
       });
   });
 
-  // Cargar consultas públicas (ahora tipo 'assistance' y no 'problem')
-  function renderPublicProblems(snapshot) {
+  // Cargar consultas públicas (solo muestra las de type 'assistance' y isPrivate: false)
+  function renderPublicAssistances(snapshot) {
     const data = snapshot.val();
     const publicAssistances = data 
       ? Object.keys(data).map(key => ({ id: key, ...data[key] }))
-        .filter(item => item.type === 'assistance' && !item.isPrivate) // Filtra por tipo 'assistance' y privacidad
+        .filter(item => item.type === 'assistance' && !item.isPrivate)
       : [];
     
     const list = document.getElementById('responsesList');
@@ -636,7 +643,7 @@
   }
 
   // Escuchar cambios en la base de datos para todas las solicitudes
-  requestsRef.on('value', renderPublicProblems, (error) => {
+  requestsRef.on('value', renderPublicAssistances, (error) => {
     console.error("Error al cargar los datos de solicitudes:", error);
     document.getElementById('loading').textContent = "Error al cargar las consultas. Por favor, inténtalo de nuevo más tarde.";
   });
