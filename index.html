@@ -3,151 +3,347 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tele Soluciono</title>
+  <title>Tele Soluciono - Tu Solución Personalizada</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      /* Paleta de colores */
+      --primary-blue: #3b82f6; /* Azul vibrante */
+      --secondary-blue: #2563eb; /* Azul más oscuro */
+      --accent-yellow: #f59e0b; /* Amarillo para iconos y botones de acento */
+      --text-dark: #1f2937; /* Texto oscuro principal */
+      --text-medium: #4b5563; /* Texto secundario */
+      --bg-light: #f9fafb; /* Fondo claro */
+      --bg-gradient-start: #e0f2fe; /* Degradado de fondo */
+      --bg-gradient-end: #bfdbfe; /* Degradado de fondo */
+      --card-bg: #ffffff; /* Fondo de tarjetas */
+      --border-light: #e5e7eb; /* Borde ligero */
+      --shadow-light: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08); /* Sombra sutil */
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
-      color: #333;
-      line-height: 1.6;
+      font-family: 'Open Sans', sans-serif; /* Fuente más legible para el cuerpo */
+      background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+      color: var(--text-dark);
+      line-height: 1.7; /* Mejor legibilidad */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     header {
-      background: linear-gradient(120deg, #4a90e2, #357abd);
+      background: linear-gradient(120deg, var(--primary-blue), var(--secondary-blue));
       color: white;
       text-align: center;
-      padding: 2.5rem 1rem;
+      padding: 1.5rem 1rem; /* Más compacto para el encabezado */
+      box-shadow: var(--shadow-light);
     }
     header h1 {
-      font-size: 2.8rem;
-      margin-bottom: 0.8rem;
+      font-family: 'Poppins', sans-serif; /* Fuente moderna para títulos */
+      font-size: 2.5rem; /* Más pequeño para el masthead */
+      margin-bottom: 0.5rem;
+      font-weight: 700;
     }
-    header p {
-      font-size: 1.2rem;
-      opacity: 0.95;
-      max-width: 700px;
-      margin: 0 auto;
+    .hero {
+      /* Fondo con imagen y overlay para legibilidad */
+      /* --- ¡IMPORTANTE! REEMPLAZA ESTA URL CON UNA FOTO DE ALTA CALIDAD DE TU NEGOCIO --- */
+      background-image: url('https://images.unsplash.com/photo-1549923746-c5e31705e468?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative; /* Necesario para el pseudo-elemento */
+      color: white;
+      text-align: center;
+      padding: 4rem 1.5rem 2rem; /* Más espacio */
+      box-shadow: var(--shadow-light);
+      z-index: 1; /* Asegura que el contenido esté por encima del overlay */
+      overflow: hidden; /* Para que el pseudo-elemento no se desborde */
+    }
+    .hero::before { /* Capa de overlay semitransparente - OPACIDAD AJUSTADA */
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(120deg, rgba(59, 130, 246, 0.6), rgba(37, 99, 235, 0.5)); /* Azul semitransparente (opacidad reducida) */
+      z-index: -1; /* Detrás del contenido pero encima de la imagen */
+    }
+
+    .hero h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      position: relative; /* Asegura que el texto esté sobre el overlay */
+    }
+    .hero p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto 2.5rem;
+      position: relative;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+      gap: 1.5rem; /* Espacio entre los elementos */
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+      position: relative;
+    }
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.1); /* Fondo del meta-dato más sutil */
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .hero-meta i {
+      color: var(--accent-yellow);
     }
     .features {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 1.5rem;
-      margin: 1.5rem auto;
-      max-width: 900px;
+      margin-top: 2.5rem; /* Más margen superior para separarlo de los botones */
+      position: relative;
     }
     .feature {
-      background: rgba(255,255,255,0.15);
-      padding: 1.2rem;
-      border-radius: 10px;
-      min-width: 180px;
+      background: rgba(255,255,255,0.1); /* Fondo más sutil */
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 1.5rem;
+      border-radius: 12px;
+      min-width: 200px;
+      width: 28%; /* Ancho relativo */
+      max-width: 280px;
       text-align: center;
+      transition: transform 0.3s ease, background 0.3s ease; /* Transición suave */
+    }
+    .feature:hover {
+      transform: translateY(-5px); /* Efecto hover */
+      background: rgba(255,255,255,0.15);
     }
     .feature i {
-      font-size: 2rem;
-      margin-bottom: 0.8rem;
-      color: #ffd700;
+      font-size: 2.8rem; /* Iconos más grandes */
+      margin-bottom: 1rem;
+      color: var(--accent-yellow); /* Color de acento */
     }
+    .feature h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .feature p {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+
+    /* Contenedor para los nuevos botones de navegación */
+    .hero-navigation {
+        margin-top: 3rem; /* Más margen para separarlo del párrafo */
+        display: flex;
+        flex-wrap: wrap; /* Permite que los botones se envuelvan */
+        justify-content: center;
+        gap: 1rem; /* Espacio entre los botones */
+        position: relative;
+    }
+    /* Estilo general de los botones de scroll */
+    .scroll-button {
+      background: var(--accent-yellow); /* Color de acento para el botón de scroll */
+      padding: 0.9rem 2rem;
+      border-radius: 50px; /* Botón pill */
+      font-size: 1.05rem; /* Tamaño de fuente ligeramente ajustado */
+      text-decoration: none;
+      color: var(--text-dark); /* Texto oscuro para contraste */
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: background 0.3s ease, transform 0.2s ease;
+      font-weight: 600;
+      white-space: nowrap; /* Evita que el texto del botón se rompa */
+    }
+    .scroll-button:hover {
+      background: #eab308; /* Tono más oscuro al hover */
+      transform: translateY(-2px);
+    }
+
     main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+      flex-grow: 1; /* Para que el footer se mantenga abajo */
+      max-width: 960px; /* Ancho máximo para el contenido */
+      margin: 3rem auto; /* Más espacio */
+      padding: 0 1.5rem;
     }
     section {
-      background: white;
-      padding: 1.8rem;
-      margin-bottom: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      background: var(--card-bg);
+      padding: 2.5rem; /* Más padding */
+      margin-bottom: 2.5rem;
+      border-radius: 16px; /* Bordes más redondeados */
+      box-shadow: var(--shadow-light); /* Sombra mejorada */
+      border: 1px solid var(--border-light);
     }
     h2 {
-      color: #4a90e2;
-      margin-bottom: 1.2rem;
-      font-size: 1.8rem;
+      font-family: 'Poppins', sans-serif;
+      color: var(--primary-blue);
+      margin-bottom: 1.5rem;
+      font-size: 2.2rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    p.section-description { /* Estilo para descripciones de sección */
+      text-align: center;
+      color: var(--text-medium);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin: 1.5rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Más ancho para los ítems */
+      gap: 2rem;
+      margin: 2rem 0;
+      text-align: center;
     }
     .contact-item h3 {
-      margin-bottom: 0.6rem;
-      color: #2c3e50;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 0.8rem;
+      color: var(--text-dark);
+      font-size: 1.2rem;
     }
     .contact-item a,
     .contact-item p {
-      color: #4a5568;
+      color: var(--text-medium);
       text-decoration: none;
       font-weight: 600;
+      font-size: 1.05rem;
+      transition: color 0.2s ease;
+    }
+    .contact-item a:hover {
+      color: var(--primary-blue);
     }
     form {
       display: flex;
       flex-direction: column;
-      gap: 1.1rem;
+      gap: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
     }
     label {
       font-weight: 600;
-      color: #2d3748;
+      color: var(--text-dark);
+      font-size: 1.05rem;
+      margin-bottom: 0.2rem;
     }
-    select, input[type="text"], textarea {
-      padding: 0.75rem;
+    select, input[type="text"], input[type="email"], input[type="tel"], textarea { /* Añadidos tipos email y tel */
+      padding: 0.9rem; /* Más padding */
       font-size: 1rem;
-      border: 1px solid #cbd5e0;
-      border-radius: 8px;
+      border: 1px solid var(--border-light);
+      border-radius: 10px; /* Más redondeado */
       width: 100%;
+      background-color: var(--bg-light);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    select:focus, input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Sombra al enfocar */
     }
     button {
-      background: linear-gradient(120deg, #4a90e2, #357abd);
+      background: linear-gradient(120deg, var(--primary-blue), var(--secondary-blue));
       color: white;
-      padding: 0.85rem;
+      padding: 1rem 1.5rem; /* Más padding */
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 1.2rem; /* Más grande */
       font-weight: 600;
-      transition: opacity 0.2s;
+      transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+      margin-top: 1rem;
+      box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
     }
     button:hover {
-      opacity: 0.9;
+      opacity: 0.95;
+      transform: translateY(-2px); /* Efecto 3D sutil */
+      box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
     }
+    
     #responsesList {
-      margin-top: 1rem;
+      margin-top: 2rem;
     }
     .response {
-      background: #f8fafc;
-      padding: 1.2rem;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      border-left: 3px solid #4a90e2;
+      background: var(--card-bg);
+      padding: 1.5rem;
+      margin-bottom: 1.2rem;
+      border-radius: 12px;
+      border-left: 5px solid var(--primary-blue); /* Borde más pronunciado */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .response h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      color: var(--text-dark);
+      margin-bottom: 0.6rem;
+    }
+    .response p {
+      color: var(--text-medium);
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+    .response strong {
+      color: var(--text-dark);
     }
     .empty-state {
       text-align: center;
-      color: #a0aec0;
+      color: var(--text-medium);
       font-style: italic;
-      padding: 1rem;
+      padding: 2rem;
+      font-size: 1.1rem;
+      border: 1px dashed var(--border-light);
+      border-radius: 10px;
+      background-color: var(--bg-light);
     }
     #loading {
       text-align: center;
-      color: #4a90e2;
-      padding: 1rem;
+      color: var(--primary-blue);
+      padding: 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
     }
     footer {
       text-align: center;
-      padding: 1.8rem;
-      color: #718096;
-      background: #f8fafc;
-      margin-top: 2rem;
-      border-top: 1px solid #edf2f7;
+      padding: 2rem;
+      color: var(--text-medium);
+      background: var(--bg-light);
+      margin-top: 3rem;
+      border-top: 1px solid var(--border-light);
+      font-size: 0.95rem;
     }
-    @media (max-width: 600px) {
-      header h1 { font-size: 2.2rem; }
+    @media (max-width: 768px) {
+      header h1 { font-size: 2rem; }
+      .hero { padding: 3rem 1rem 1.5rem; } /* Ajuste de padding en móvil */
+      .hero h2 { font-size: 2.5rem; }
+      .hero p { font-size: 1.1rem; }
+      .hero-meta { flex-direction: column; gap: 1rem; }
       .features { flex-direction: column; align-items: center; }
+      .feature { width: 90%; max-width: 350px; }
+      main { margin: 2rem auto; padding: 0 1rem; }
+      section { padding: 1.8rem; }
+      h2 { font-size: 1.8rem; }
+      button { font-size: 1.1rem; padding: 0.9rem 1.2rem; }
+      .scroll-button { font-size: 0.95rem; padding: 0.7rem 1.2rem; }
+      .hero-navigation { gap: 0.8rem; margin-top: 2rem; } /* Ajusta el gap y margen para los botones en móviles */
     }
   </style>
 </head>
@@ -155,29 +351,49 @@
 
 <header>
   <h1>TELE SOLUCIONO</h1>
-  <p>¡Un equipo de expertos en todas las materias analizará y resolverá tu problema en tiempo récord!</p>
+</header>
+
+<div class="hero">
+  <h2>Tu Equipo de Soluciones Globales</h2>
+  <p>¡Un equipo de expertos, potenciado por IA, analizará y resolverá tu situación en tiempo récord!</p>
+  
+  <div class="hero-navigation">
+    <a href="#problemFormSection" class="scroll-button"><i class="fas fa-headset"></i> Solicitar Asistencia</a>
+    <a href="#taskSection" class="scroll-button"><i class="fas fa-tasks"></i> Solicitar Tarea</a>
+    <a href="#companySearchSection" class="scroll-button"><i class="fas fa-sync-alt"></i> Cambiar Compañía</a> <!-- TEXTO Y ICONO CAMBIADO -->
+    <a href="#publicProblemsSection" class="scroll-button"><i class="fas fa-eye"></i> Ver Consultas Públicas</a>
+  </div>
+
+  <div class="hero-meta">
+    <span><i class="far fa-calendar-alt"></i> Hoy: <span id="currentDate"></span></span>
+    <span><i class="far fa-clock"></i> <span id="currentTime"></span></span>
+    <span><i class="fas fa-cloud-sun"></i> Ciudad: 22°C Soleado</span> <!-- Datos estáticos por simplicidad -->
+    <span><i class="fas fa-bullhorn"></i> Novedades: ¡Nuevos expertos en IA disponibles!</span>
+  </div>
+
   <div class="features">
     <div class="feature">
       <i class="fas fa-brain"></i>
-      <h3>Inteligencia Artificial</h3>
-      <p>Análisis avanzado</p>
+      <h3>Análisis Inteligente</h3>
+      <p>Nuestra IA evalúa y clasifica tu situación con precisión.</p>
     </div>
     <div class="feature">
-      <i class="fas fa-users"></i>
-      <h3>Expertos Humanos</h3>
-      <p>Soluciones prácticas</p>
+      <i class="fas fa-users-gear"></i>
+      <h3>Expertos Dedicados</h3>
+      <p>Profesionales de diversas áreas ofrecen soluciones personalizadas.</p>
     </div>
     <div class="feature">
-      <i class="fas fa-bolt"></i>
-      <h3>Rápido y Seguro</h3>
-      <p>Respuestas en minutos</p>
+      <i class="fas fa-rocket"></i>
+      <h3>Eficiencia y Seguridad</h3>
+      <p>Respuestas rápidas y protección total de tus datos.</p>
     </div>
   </div>
-</header>
+</div>
 
 <main>
   <section>
     <h2>¿Necesitas ayuda inmediata?</h2>
+    <p class="section-description">Contáctanos a través de nuestros canales principales o solicita asistencia directamente.</p>
     <div class="contact-grid">
       <div class="contact-item">
         <h3>Correo Electrónico</h3>
@@ -189,41 +405,91 @@
       </div>
       <div class="contact-item">
         <h3>Horario</h3>
-        <p>Lun-Vie: 9:00 - 20:00</p>
+        <p>Lun-Vie: 9:00 - 20:00 (CET)</p>
       </div>
     </div>
   </section>
 
-  <section>
-    <h2>Envía tu problema ahora</h2>
+  <section id="problemFormSection">
+    <h2>Solicita Asistencia Personalizada</h2>
+    <p class="section-description">Describe tu situación y nuestros expertos te brindarán una solución a medida.</p>
     <form id="problemForm">
-      <label for="category">Categoría</label>
+      <label for="category">Categoría de Asistencia</label>
       <select id="category" required>
         <option value="">Selecciona una categoría</option>
         <option value="Técnico / Reparación">Técnico / Reparación</option>
         <option value="Psicológico / Emocional">Psicológico / Emocional</option>
+        <option value="Legal / Administrativo">Legal / Administrativo</option>
+        <option value="Educativo / Académico">Educativo / Académico</option>
         <option value="General / Otros">General / Otros</option>
       </select>
 
-      <label for="title">Título breve</label>
-      <input type="text" id="title" placeholder="Ejemplo: Problema con calefacción" required />
+      <label for="title">Asunto breve</label>
+      <input type="text" id="title" placeholder="Ejemplo: Problema con la conexión a internet en casa" required />
 
       <label for="description">Descripción detallada</label>
-      <textarea id="description" rows="4" placeholder="Describe tu problema aquí" required></textarea>
+      <textarea id="description" rows="5" placeholder="Explica tu situación con el mayor detalle posible para que nuestros expertos puedan ayudarte mejor." required></textarea>
 
-      <button type="submit">Enviar Problema</button>
+      <button type="submit">Enviar Solicitud</button>
     </form>
   </section>
 
-  <section>
-    <h2>Problemas Públicos</h2>
-    <div id="loading">Cargando...</div>
+  <section id="taskSection">
+    <h2>Mis Tareas y Contacto Preferido</h2>
+    <p class="section-description">Dinos qué tarea necesitas que realicemos y cómo deseas que te contactemos para coordinar.</p>
+    <form id="taskForm">
+      <label for="taskDescription">Describe la tarea que necesitas</label>
+      <textarea id="taskDescription" rows="4" placeholder="Ejemplo: Necesito ayuda para configurar un nuevo router o una consulta sobre la gestión de residuos." required></textarea>
+
+      <label for="contactMethod">Método de Contacto Preferido</label>
+      <select id="contactMethod" required>
+        <option value="">Selecciona un método</option>
+        <option value="Email">Correo Electrónico</option>
+        <option value="Phone">Teléfono</option>
+        <option value="WhatsApp">WhatsApp</option>
+      </select>
+
+      <label for="contactDetail">Tu Correo Electrónico / Número de Teléfono</label>
+      <input type="text" id="contactDetail" placeholder="ejemplo@dominio.com o +34 123 456 789" required />
+
+      <button type="submit">Enviar Solicitud de Tarea</button>
+    </form>
+  </section>
+
+  <section id="companySearchSection">
+    <h2>Cambia de Compañía y Ahorra</h2> <!-- TEXTO CAMBIADO -->
+    <p class="section-description">Te ayudamos a encontrar las mejores ofertas en luz, gas, telefonía, seguros y más. ¡Cambiar nunca fue tan fácil!</p> <!-- TEXTO CAMBIADO -->
+    <form id="companySearchForm">
+      <label for="serviceType">Tipo de Servicio que Buscas</label>
+      <select id="serviceType" required>
+        <option value="">Selecciona el servicio</option>
+        <option value="Luz y Gas">Luz y Gas</option>
+        <option value="Telefonía e Internet">Telefonía e Internet</option>
+        <option value="Seguros (Hogar, Coche, Vida)">Seguros (Hogar, Coche, Vida)</option>
+        <option value="Televisión y Plataformas">Televisión y Plataformas</option>
+        <option value="Otros Servicios">Otros Servicios</option>
+      </select>
+
+      <label for="companySearchNotes">Notas o Preferencias Adicionales</label>
+      <textarea id="companySearchNotes" rows="3" placeholder="Ejemplo: Busco una tarifa plana de fibra óptica, o un seguro de hogar con asistencia 24h." required></textarea>
+
+      <label for="companyContactDetail">Tu Correo Electrónico / Número de Teléfono</label>
+      <input type="text" id="companyContactDetail" placeholder="ejemplo@dominio.com o +34 123 456 789" required />
+
+      <button type="submit">Solicitar Comparativa</button> <!-- TEXTO CAMBIADO -->
+    </form>
+  </section>
+
+  <section id="publicProblemsSection">
+    <h2>Consultas Públicas Recientes</h2>
+    <p class="section-description">Aquí puedes ver algunas consultas compartidas por otros usuarios y sus estados. (Solo problemas)</p>
+    <div id="loading">Cargando consultas públicas...</div>
     <div id="responsesList"></div>
   </section>
 </main>
 
 <footer>
-  <p>&copy; 2025 Tele Soluciono – Tu solución está a un clic de distancia</p>
+  <p>&copy; 2025 Tele Soluciono – Tu solución integral al alcance de tu mano.</p>
 </footer>
 
 <!-- Firebase SDK -->
@@ -233,21 +499,30 @@
 <script>
   // 🔥 CONFIGURACIÓN DE FIREBASE – REEMPLAZA CON TUS DATOS REALES
   const firebaseConfig = {
-    apiKey: "AIzaSyC1x8...",
+    apiKey: "AIzaSyC1x8...", // ASEGÚRATE DE REEMPLAZAR ESTO
     authDomain: "tele-soluciono-e2f6a.firebaseapp.com",
     databaseURL: "https://tele-soluciono-e2f6a-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "tele-soluciono-e2f6a",
     storageBucket: "tele-soluciono-e2f6a.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:abc123def456"
+    messagingSenderId: "123456789", // ASEGÚRATE DE REEMPLAZAR ESTO
+    appId: "1:123456789:web:abc123def456" // ASEGÚRATE DE REEMPLAZAR ESTO
   };
 
   // Inicializar Firebase
   firebase.initializeApp(firebaseConfig);
   const database = firebase.database();
-  const problemsRef = database.ref('problems');
+  const requestsRef = database.ref('requests');
 
-  // Formatear fecha
+  // Funciones para datos dinámicos en la portada
+  function updateClock() {
+    const now = new Date();
+    document.getElementById('currentTime').textContent = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    document.getElementById('currentDate').textContent = now.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  }
+  setInterval(updateClock, 1000);
+  updateClock(); // Llamada inicial para que no espere 1 segundo
+
+  // Formatear fecha para problemas
   function formatDate(timestamp) {
     const date = new Date(timestamp);
     return new Intl.DateTimeFormat('es-ES', {
@@ -259,58 +534,111 @@
     }).format(date);
   }
 
-  // Enviar problema
+  // Enviar Asistencia Personalizada (anteriormente "Problema")
   document.getElementById('problemForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const problem = {
+      type: 'assistance', // Cambiado a 'assistance'
       category: document.getElementById('category').value,
       title: document.getElementById('title').value,
       description: document.getElementById('description').value,
-      isPrivate: false, // Todos públicos por ahora
+      isPrivate: false, // Las asistencias pueden ser públicas para ejemplo
       timestamp: firebase.database.ServerValue.TIMESTAMP
     };
 
-    problemsRef.push(problem)
+    requestsRef.push(problem)
       .then(() => {
-        alert('¡Tu problema ha sido enviado!');
+        alert('¡Tu solicitud de asistencia ha sido enviada exitosamente! Nuestros expertos la revisarán pronto.');
         this.reset();
       })
       .catch(error => {
-        console.error("Error:", error);
-        alert('Error al enviar: ' + error.message);
+        console.error("Error al enviar la solicitud de asistencia:", error);
+        alert('Hubo un error al enviar tu solicitud de asistencia: ' + error.message);
       });
   });
 
-  // Cargar problemas públicos
-  function renderProblems(snapshot) {
+  // Enviar Tarea
+  document.getElementById('taskForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const task = {
+      type: 'task',
+      description: document.getElementById('taskDescription').value,
+      contactMethod: document.getElementById('contactMethod').value,
+      contactDetail: document.getElementById('contactDetail').value,
+      isPrivate: true, // Las tareas son por defecto privadas
+      timestamp: firebase.database.ServerValue.TIMESTAMP
+    };
+
+    requestsRef.push(task)
+      .then(() => {
+        alert('¡Tu solicitud de tarea ha sido enviada! Nos pondremos en contacto según tu preferencia.');
+        this.reset();
+      })
+      .catch(error => {
+        console.error("Error al enviar la tarea:", error);
+        alert('Hubo un error al enviar tu tarea: ' + error.message);
+      });
+  });
+
+  // Enviar Búsqueda de Compañía (ahora "Cambiar Compañía")
+  document.getElementById('companySearchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const companySearch = {
+      type: 'company_change', // Cambiado a 'company_change'
+      serviceType: document.getElementById('serviceType').value,
+      notes: document.getElementById('companySearchNotes').value,
+      contactDetail: document.getElementById('companyContactDetail').value,
+      isPrivate: true, // Las búsquedas/cambios de compañía son por defecto privadas
+      timestamp: firebase.database.ServerValue.TIMESTAMP
+    };
+
+    requestsRef.push(companySearch)
+      .then(() => {
+        alert('¡Tu solicitud de cambio de compañía ha sido enviada! Te contactaremos con las mejores opciones.');
+        this.reset();
+      })
+      .catch(error => {
+        console.error("Error al enviar la solicitud de compañía:", error);
+        alert('Hubo un error al enviar tu solicitud de compañía: ' + error.message);
+      });
+  });
+
+  // Cargar consultas públicas (ahora tipo 'assistance' y no 'problem')
+  function renderPublicProblems(snapshot) {
     const data = snapshot.val();
-    const problems = data ? Object.values(data).filter(p => !p.isPrivate) : [];
+    const publicAssistances = data 
+      ? Object.keys(data).map(key => ({ id: key, ...data[key] }))
+        .filter(item => item.type === 'assistance' && !item.isPrivate) // Filtra por tipo 'assistance' y privacidad
+      : [];
     
     const list = document.getElementById('responsesList');
     const loading = document.getElementById('loading');
     loading.style.display = 'none';
 
-    if (problems.length === 0) {
-      list.innerHTML = '<div class="empty-state">No hay problemas públicos aún.</div>';
+    if (publicAssistances.length === 0) {
+      list.innerHTML = '<div class="empty-state">No hay consultas públicas para mostrar en este momento. ¡Sé el primero en enviar una!</div>';
       return;
     }
 
-    problems.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+    publicAssistances.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
     
-    list.innerHTML = problems.map(p => `
+    list.innerHTML = publicAssistances.map(p => `
       <div class="response">
         <h3>${p.title}</h3>
         <p><strong>Categoría:</strong> ${p.category}</p>
-        <p><strong>Fecha:</strong> ${p.timestamp ? formatDate(p.timestamp) : 'Sin fecha'}</p>
+        <p><strong>Fecha:</strong> ${p.timestamp ? formatDate(p.timestamp) : 'Fecha no disponible'}</p>
         <p>${p.description}</p>
       </div>
     `).join('');
   }
 
-  problemsRef.on('value', renderProblems, (error) => {
-    console.error("Error al cargar:", error);
-    document.getElementById('loading').textContent = "Error al cargar datos";
+  // Escuchar cambios en la base de datos para todas las solicitudes
+  requestsRef.on('value', renderPublicProblems, (error) => {
+    console.error("Error al cargar los datos de solicitudes:", error);
+    document.getElementById('loading').textContent = "Error al cargar las consultas. Por favor, inténtalo de nuevo más tarde.";
   });
 </script>
 
