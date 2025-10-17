@@ -58,6 +58,14 @@
       border-radius: 8px;
       width: 100%;
     }
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .checkbox-group input {
+      width: auto;
+    }
     button {
       background: linear-gradient(120deg, #4a90e2, #357abd);
       color: white;
@@ -85,9 +93,21 @@
       border-radius: 0 8px 8px 0;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
+    article.response.private {
+      border-left-color: #e53e3e;
+      background: #fff5f5;
+    }
     article.response h3 {
       margin: 0 0 0.5rem;
       color: #2c3e50;
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+    }
+    article.response .meta {
+      font-size: 0.85rem;
+      color: #718096;
+      margin-bottom: 0.5rem;
     }
     article.response p {
       margin: 0.3rem 0;
@@ -112,6 +132,13 @@
       text-align: center;
       padding: 1rem;
       color: #4a90e2;
+    }
+    .private-badge {
+      background: #e53e3e;
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
     }
   </style>
 </head>
@@ -140,6 +167,11 @@
       <label for="description">Descripción detallada</label>
       <textarea id="description" rows="4" placeholder="Describe tu problema aquí" required></textarea>
 
+      <div class="checkbox-group">
+        <input type="checkbox" id="isPrivate" />
+        <label for="isPrivate">Marcar como pregunta privada (solo tú la verás)</label>
+      </div>
+
       <button type="submit">Enviar Problema</button>
     </form>
   </section>
@@ -160,64 +192,86 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 <script>
-  const firebaseConfig = {
+ const firebaseConfig = {
   apiKey: "AIzaSy...",
   authDomain: "resuelve-tus-problemas.firebaseapp.com",
   databaseURL: "https://tele-soluciono-e2f6a-default-rtdb.europe-west1.firebasedatabase.app",
   messagingSenderId: "123456789",
   appId: "1:123456789:web:abc123..."
-};
 
-  // Inicializar Firebase
   firebase.initializeApp(firebaseConfig);
   const database = firebase.database();
   const problemsRef = database.ref('problems');
+
+  // Formatear fecha
+  function formatDate(timestamp) {
+    const date = new Date(timestamp);
+    return date.toLocaleString('es-ES', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  }
 
   // Enviar problema
   document.getElementById('problemForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
+    const isPrivate = document.getElementById('isPrivate').checked;
     const problem = {
       category: document.getElementById('category').value,
       title: document.getElementById('title').value,
       description: document.getElementById('description').value,
+      isPrivate: isPrivate,
       timestamp: firebase.database.ServerValue.TIMESTAMP
     };
 
     problemsRef.push(problem)
       .then(() => {
-        alert('¡Tu problema ha sido enviado!');
+        alert(isPrivate ? 
+          '¡Tu pregunta privada ha sido guardada!' : 
+          '¡Tu problema ha sido enviado públicamente!');
         this.reset();
+        document.getElementById('isPrivate').checked = false;
       })
       .catch(err => {
         alert('Error al enviar: ' + err.message);
       });
   });
 
-  // Cargar problemas en tiempo real
+  // Renderizar problemas (solo públicos para todos)
   function renderProblems(problems) {
     const list = document.getElementById('responsesList');
     const loading = document.getElementById('loading');
     loading.style.display = 'none';
 
-    if (problems.length === 0) {
-      list.innerHTML = '<div class="empty-state">Aún no hay problemas enviados.</div>';
+    // Filtrar solo problemas públicos
+    const publicProblems = problems.filter(p => !p.isPrivate);
+
+    if (publicProblems.length === 0) {
+      list.innerHTML = '<div class="empty-state">Aún no hay problemas públicos enviados.</div>';
       return;
     }
 
-    // Ordenar por más reciente
-    problems.sort((a, b) => b.timestamp - a.timestamp);
+    publicProblems.sort((a, b) => b.timestamp - a.timestamp);
 
-    list.innerHTML = problems.map(p => `
+    list.innerHTML = publicProblems.map(p => `
       <article class="response">
-        <h3>${p.title}</h3>
-        <p><strong>Categoría:</strong> ${p.category}</p>
+        <h3>
+          ${p.title}
+          ${p.isPrivate ? '<span class="private-badge">Privado</span>' : ''}
+        </h3>
+        <div class="meta">
+          Categoría: ${p.category} • ${formatDate(p.timestamp)}
+        </div>
         <p><strong>Descripción:</strong> ${p.description}</p>
       </article>
     `).join('');
   }
 
-  // Escuchar cambios en la base de datos
+  // Cargar problemas
   problemsRef.on('value', (snapshot) => {
     const data = snapshot.val();
     const problems = data ? Object.values(data) : [];
@@ -229,6 +283,4 @@
 </script>
 
 </body>
-
 </html>
-
