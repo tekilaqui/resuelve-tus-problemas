@@ -6,295 +6,101 @@
   <title>Tele Soluciono</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* TODO TU CSS AQUÍ */
-    body { font-family: 'Segoe UI', ... }
-    .hero { background: linear-gradient... }
-    /* ... resto del CSS */
-  </style>
-</head>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
       color: #333;
       line-height: 1.6;
+      margin: 0;
+      padding: 0;
     }
-    
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(120deg, #4a90e2, #357abd);
+    header {
+      background: #4a90e2;
       color: white;
-      padding: 4rem 1rem;
       text-align: center;
-      position: relative;
-      overflow: hidden;
+      padding: 2rem 1rem;
     }
-    
-    .hero-content {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-      z-index: 2;
-    }
-    
-    .hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    
-    .hero p {
-      font-size: 1.4rem;
-      margin-bottom: 2rem;
-      opacity: 0.95;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
-    }
-    
-    .highlight {
-      background: linear-gradient(120deg, #ffd700, #ffa500);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-weight: bold;
-      color: #1a202c;
-    }
-    
-    /* Features */
-    .features {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin: 2rem 0;
-      flex-wrap: wrap;
-    }
-    
-    .feature {
-      background: rgba(255, 255, 255, 0.15);
-      padding: 1.5rem;
-      border-radius: 12px;
-      min-width: 200px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .feature i {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      display: block;
-      color: #ffd700;
-    }
-    
-    /* Contact Section */
-    .contact-section {
-      background: white;
-      padding: 3rem 1rem;
-      margin: 2rem auto;
-      max-width: 1200px;
-      border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-    }
-    
-    .contact-section h2 {
-      text-align: center;
-      color: #4a90e2;
-      margin-bottom: 2rem;
-      font-size: 2.2rem;
-    }
-    
-    .contact-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    
-    .contact-method {
-      text-align: center;
-      padding: 1.5rem;
-      min-width: 200px;
-      background: #f8fafc;
-      border-radius: 12px;
-    }
-    
-    .contact-method i {
+    header h1 {
       font-size: 2.5rem;
-      color: #4a90e2;
-      margin-bottom: 1rem;
+      margin: 0;
     }
-    
-    .contact-method h3 {
-      margin-bottom: 0.8rem;
-      color: #2c3e50;
-    }
-    
-    .contact-method a {
-      color: #4a5568;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    
-    /* Main Content */
     main {
       max-width: 800px;
       margin: 2rem auto;
-      padding: 1.5rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      padding: 0 1rem;
     }
-    
-    main h2 {
+    section {
+      background: white;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
       color: #4a90e2;
       margin-top: 0;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid #eef4ff;
-      text-align: center;
     }
-    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
     form {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1rem;
     }
-    
-    label {
-      font-weight: 600;
-      color: #2c3e50;
+    label { font-weight: bold; }
+    input, select, textarea {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
     }
-    
-    select, input[type="text"], textarea {
-      padding: 0.75rem;
-      font-size: 1rem;
-      border: 1px solid #cbd5e0;
-      border-radius: 8px;
-      width: 100%;
-    }
-    
-    .checkbox-group {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
     button {
-      background: linear-gradient(120deg, #4a90e2, #357abd);
+      background: #4a90e2;
       color: white;
-      padding: 0.85rem;
+      padding: 0.75rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 4px;
       cursor: pointer;
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1rem;
     }
-    
-    section#responses {
-      margin-top: 2.5rem;
-    }
-    
-    #responsesList {
-      margin-top: 1rem;
-    }
-    
-    article.response {
-      background: #f8fafc;
-      border-left: 4px solid #4a90e2;
-      padding: 1.2rem;
-      margin-bottom: 1.2rem;
-      border-radius: 0 8px 8px 0;
-    }
-    
-    .empty-state {
-      text-align: center;
-      color: #a0aec0;
-      font-style: italic;
-      padding: 1.5rem;
-    }
-    
-    #loading {
-      text-align: center;
-      padding: 1rem;
-      color: #4a90e2;
-    }
-    
     footer {
       text-align: center;
-      padding: 2rem;
-      font-size: 0.95rem;
-      color: #718096;
+      padding: 1.5rem;
+      color: #666;
       background: #f8fafc;
-      margin-top: 2rem;
-      border-top: 1px solid #edf2f7;
-    }
-    
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.5rem; }
-      .hero p { font-size: 1.1rem; }
-      .features { flex-direction: column; }
-      .contact-container { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>TELE SOLUCIONO</h1>
-    <p>¡<span class="highlight">Un equipo de expertos en todas las materias</span> analizará y resolverá tu problema en tiempo récord!</p>
-    
-    <div class="features">
-      <div class="feature">
-        <i class="fas fa-brain"></i>
-        <h3>Inteligencia Artificial</h3>
-        <p>Análisis avanzado</p>
-      </div>
-      <div class="feature">
-        <i class="fas fa-users"></i>
-        <h3>Expertos Humanos</h3>
-        <p>Soluciones prácticas</p>
-      </div>
-      <div class="feature">
-        <i class="fas fa-bolt"></i>
-        <h3>Rápido y Seguro</h3>
-        <p>Respuestas en minutos</p>
-      </div>
-    </div>
-  </div>
-</section>
+<header>
+  <h1>TELE SOLUCIONO</h1>
+  <p>¡Un equipo de expertos en todas las materias analizará y resolverá tu problema en tiempo récord!</p>
+</header>
 
-<!-- Contact Section -->
-<section class="contact-section">
-  <h2>¿Necesitas ayuda inmediata?</h2>
-  <div class="contact-container">
-    <div class="contact-method">
-      <i class="fas fa-envelope"></i>
-      <h3>Correo Electrónico</h3>
-      <a href="mailto:contacto@telesoluciono.com">contacto@telesoluciono.com</a>
-    </div>
-    <div class="contact-method">
-      <i class="fas fa-phone"></i>
-      <h3>Teléfono</h3>
-      <p>+34 600 123 456</p>
-    </div>
-    <div class="contact-method">
-      <i class="fas fa-clock"></i>
-      <h3>Horario</h3>
-      <p>Lun-Vie: 9:00 - 20:00</p>
-    </div>
-  </div>
-</section>
-
-<!-- Main Form Section -->
 <main>
-  <section id="form-section">
+  <section>
+    <h2>¿Necesitas ayuda inmediata?</h2>
+    <div class="contact-grid">
+      <div>
+        <h3>Correo Electrónico</h3>
+        <p><a href="mailto:contacto@telesoluciono.com">contacto@telesoluciono.com</a></p>
+      </div>
+      <div>
+        <h3>Teléfono</h3>
+        <p>+34 600 123 456</p>
+      </div>
+      <div>
+        <h3>Horario</h3>
+        <p>Lun-Vie: 9:00 - 20:00</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
     <h2>Envía tu problema ahora</h2>
     <form id="problemForm">
       <label for="category">Categoría</label>
@@ -311,16 +117,11 @@
       <label for="description">Descripción detallada</label>
       <textarea id="description" rows="4" placeholder="Describe tu problema aquí" required></textarea>
 
-      <div class="checkbox-group">
-        <input type="checkbox" id="isPrivate" />
-        <label for="isPrivate">Pregunta privada</label>
-      </div>
-
       <button type="submit">Enviar Problema</button>
     </form>
   </section>
 
-  <section id="responses">
+  <section>
     <h2>Problemas Públicos</h2>
     <div id="loading">Cargando...</div>
     <div id="responsesList"></div>
@@ -331,110 +132,11 @@
   <p>&copy; 2025 Tele Soluciono</p>
 </footer>
 
-<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-
 <script>
-  // ⚠️ CONFIGURACIÓN DE FIREBASE - DEBES REEMPLAZAR ESTOS VALORES
-  const firebaseConfig = {
-    apiKey: "AIzaSyC1x8...",
-    authDomain: "tele-soluciono-e2f6a.firebaseapp.com",
-    databaseURL: "https://tele-soluciono-e2f6a-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "tele-soluciono-e2f6a",
-    storageBucket: "tele-soluciono-e2f6a.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:abc123def456"
-  };
-
-  // Inicializar Firebase con manejo de errores
-  let database;
-  try {
-    firebase.initializeApp(firebaseConfig);
-    database = firebase.database();
-  } catch (e) {
-    console.warn("Firebase no inicializado:", e.message);
-    document.getElementById('loading').textContent = "Modo demo (sin conexión a base de datos)";
-  }
-
-  // Funciones solo si Firebase está disponible
-  if (database) {
-    const problemsRef = database.ref('problems');
-
-    function formatDate(timestamp) {
-      const date = new Date(timestamp);
-      return new Intl.DateTimeFormat('es-ES', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      }).format(date);
-    }
-
-    document.getElementById('problemForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const problem = {
-        category: document.getElementById('category').value,
-        title: document.getElementById('title').value,
-        description: document.getElementById('description').value,
-        isPrivate: document.getElementById('isPrivate').checked,
-        timestamp: firebase.database.ServerValue.TIMESTAMP
-      };
-
-      problemsRef.push(problem)
-        .then(() => {
-          alert('¡Enviado correctamente!');
-          document.getElementById('problemForm').reset();
-          document.getElementById('isPrivate').checked = false;
-        })
-        .catch(error => {
-          console.error("Error:", error);
-          alert('Error al guardar: ' + error.message);
-        });
-    });
-
-    function renderProblems(snapshot) {
-      const data = snapshot.val();
-      const problems = data ? Object.values(data).filter(p => !p.isPrivate) : [];
-      
-      const list = document.getElementById('responsesList');
-      const loading = document.getElementById('loading');
-      loading.style.display = 'none';
-
-      if (problems.length === 0) {
-        list.innerHTML = '<div class="empty-state">No hay problemas públicos aún.</div>';
-        return;
-      }
-
-      problems.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
-      
-      list.innerHTML = problems.map(p => `
-        <article class="response">
-          <h3>${p.title}</h3>
-          <p><strong>Categoría:</strong> ${p.category}</p>
-          <p><strong>Fecha:</strong> ${p.timestamp ? formatDate(p.timestamp) : 'Sin fecha'}</p>
-          <p>${p.description}</p>
-        </article>
-      `).join('');
-    }
-
-    problemsRef.on('value', renderProblems, (error) => {
-      console.error("Error al cargar:", error);
-      document.getElementById('loading').textContent = "Error al cargar datos";
-    });
-  } else {
-    // Modo demo sin Firebase
-    document.getElementById('problemForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('¡Modo demo! En producción se guardaría en la base de datos.');
-      this.reset();
-    });
-    
-    document.getElementById('responsesList').innerHTML = '<div class="empty-state">Modo demo: sin conexión a base de datos</div>';
-    document.getElementById('loading').style.display = 'none';
-  }
+  // Tu configuración de Firebase aquí (cuando la tengas lista)
+  console.log("Página cargada");
 </script>
 
 </body>
