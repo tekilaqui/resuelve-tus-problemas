@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ResuelveTusProblemas</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(120deg, #4a90e2, #357abd);
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+      opacity: 0.9;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+    h2 {
+      color: #4a90e2;
+      margin-top: 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #eef4ff;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    label {
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    select, input[type="text"], textarea {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #cbd5e0;
+      border-radius: 8px;
+      width: 100%;
+    }
+    button {
+      background: linear-gradient(120deg, #4a90e2, #357abd);
+      color: white;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    section#responses {
+      margin-top: 2.5rem;
+    }
+    #responsesList {
+      margin-top: 1rem;
+    }
+    article.response {
+      background: #f8fafc;
+      border-left: 4px solid #4a90e2;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+      border-radius: 0 8px 8px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    article.response h3 {
+      margin: 0 0 0.5rem;
+      color: #2c3e50;
+    }
+    article.response p {
+      margin: 0.3rem 0;
+      color: #4a5568;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.95rem;
+      color: #718096;
+      background: #f8fafc;
+      margin-top: 2rem;
+      border-top: 1px solid #edf2f7;
+    }
+    .empty-state {
+      text-align: center;
+      color: #a0aec0;
+      font-style: italic;
+      padding: 1.5rem;
+    }
+    #loading {
+      text-align: center;
+      padding: 1rem;
+      color: #4a90e2;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ResuelveTusProblemas</h1>
+  <p>Envía tu problema y recibe soluciones prácticas, técnicas o de apoyo</p>
+</header>
+
+<main>
+  <section id="form-section">
+    <h2>Envía tu problema</h2>
+    <form id="problemForm">
+      <label for="category">Categoría</label>
+      <select id="category" required>
+        <option value="">Selecciona una categoría</option>
+        <option value="Técnico / Reparación">Técnico / Reparación</option>
+        <option value="Psicológico / Emocional">Psicológico / Emocional</option>
+        <option value="General / Otros">General / Otros</option>
+      </select>
+
+      <label for="title">Título breve</label>
+      <input type="text" id="title" placeholder="Ejemplo: Problema con calefacción" required />
+
+      <label for="description">Descripción detallada</label>
+      <textarea id="description" rows="4" placeholder="Describe tu problema aquí" required></textarea>
+
+      <button type="submit">Enviar Problema</button>
+    </form>
+  </section>
+
+  <section id="responses">
+    <h2>Respuestas Públicas</h2>
+    <div id="loading">Cargando problemas...</div>
+    <div id="responsesList"></div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 ResuelveTusProblemas. Todos los derechos reservados.</p>
+</footer>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+  apiKey: "AIzaSy...",
+  authDomain: "resuelve-tus-problemas.firebaseapp.com",
+  databaseURL: "https://resuelve-tus-problemas-default-rtdb.firebaseio.com",
+  projectId: "resuelve-tus-problemas",
+  storageBucket: "resuelve-tus-problemas.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123456789:web:abc123..."
+};
+
+  // Inicializar Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+  const problemsRef = database.ref('problems');
+
+  // Enviar problema
+  document.getElementById('problemForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const problem = {
+      category: document.getElementById('category').value,
+      title: document.getElementById('title').value,
+      description: document.getElementById('description').value,
+      timestamp: firebase.database.ServerValue.TIMESTAMP
+    };
+
+    problemsRef.push(problem)
+      .then(() => {
+        alert('¡Tu problema ha sido enviado!');
+        this.reset();
+      })
+      .catch(err => {
+        alert('Error al enviar: ' + err.message);
+      });
+  });
+
+  // Cargar problemas en tiempo real
+  function renderProblems(problems) {
+    const list = document.getElementById('responsesList');
+    const loading = document.getElementById('loading');
+    loading.style.display = 'none';
+
+    if (problems.length === 0) {
+      list.innerHTML = '<div class="empty-state">Aún no hay problemas enviados.</div>';
+      return;
+    }
+
+    // Ordenar por más reciente
+    problems.sort((a, b) => b.timestamp - a.timestamp);
+
+    list.innerHTML = problems.map(p => `
+      <article class="response">
+        <h3>${p.title}</h3>
+        <p><strong>Categoría:</strong> ${p.category}</p>
+        <p><strong>Descripción:</strong> ${p.description}</p>
+      </article>
+    `).join('');
+  }
+
+  // Escuchar cambios en la base de datos
+  problemsRef.on('value', (snapshot) => {
+    const data = snapshot.val();
+    const problems = data ? Object.values(data) : [];
+    renderProblems(problems);
+  }, (error) => {
+    console.error('Error al cargar:', error);
+    document.getElementById('loading').textContent = 'Error al cargar los problemas.';
+  });
+</script>
+
+</body>
+</html>
